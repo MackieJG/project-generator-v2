@@ -1,4 +1,5 @@
-from js import Response
+
+from js import Response, Headers
 import random
 
 business = [
@@ -58,7 +59,10 @@ concepts = [
 ]
 
 
-async def on_fetch(request, env):
-    
+async def on_fetch():
+    headers = Headers.new({
+        "content-type": "application/json",
+        "Access-Control-Allow-Origin": "http://localhost:3000"
+    }.items())
                
-    return Response.new("{ \"business\": \"" + random.choice(business)+ "\", \"concept\": \""+ random.choice(concepts)+ "\" }")
+    return Response.new("{ \"business\": \"" + random.choice(business)+ "\", \"concept\": \""+ random.choice(concepts)+ "\" }", headers=headers)
