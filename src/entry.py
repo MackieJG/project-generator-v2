@@ -59,10 +59,12 @@ concepts = [
 ]
 
 
-async def on_fetch():
-    headers = Headers.new({
+async def on_fetch(clientRequest):
+    print(clientRequest)
+    origin = clientRequest.headers.get("Origin")
+    if origin in ["https://juniordevresources.com", "https://www.juniordevresources.com"]:
+        headers = Headers.new({
         "content-type": "application/json",
-        "Access-Control-Allow-Origin": "https://juniordevresources.com"
-    }.items())
+        "Access-Control-Allow-Origin": origin}.items())
                
     return Response.new("{ \"business\": \"" + random.choice(business)+ "\", \"concept\": \""+ random.choice(concepts)+ "\" }", headers=headers)
