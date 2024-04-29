@@ -62,7 +62,7 @@ concepts = [
 async def on_fetch():
     headers = Headers.new({
         "content-type": "application/json",
-        "Access-Control-Allow-Origin": "http://localhost:3000"
+        "Access-Control-Allow-Origin": "https://juniordevresources.com"
     }.items())
                
     return Response.new("{ \"business\": \"" + random.choice(business)+ "\", \"concept\": \""+ random.choice(concepts)+ "\" }", headers=headers)
